@@ -1,0 +1,7 @@
+# macOS
+.DS_Store
+._*
+
+# Local tooling / private notes
+.claude/
+CLAUDE.md

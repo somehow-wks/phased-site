@@ -1,0 +1,424 @@
+/* Phased site. One aesthetic: the app's dark hero - deep slate, an amber bloom,
+   phase-rail segments as the recurring motif. */
+
+:root {
+  --bg: #0f1418;
+  --panel: #161e25;
+  --card: #1b242d;
+  --ink: #eef2f5;
+  --muted: #93a1ad;
+  --faint: #5c6a75;
+  --amber: #f0a63a;
+  --teal: #45c4b0;
+  --hairline: rgba(255, 255, 255, 0.08);
+  --display: "Fraunces", Georgia, serif;
+  --body: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--body);
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.65;
+  font-size: 16.5px;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+}
+
+/* The app's hero bloom, top right, exactly where Theme.heroBloom puts it. */
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  height: 720px;
+  background:
+    radial-gradient(560px 420px at 88% -40px, rgba(240, 166, 58, 0.14), transparent 70%),
+    radial-gradient(420px 360px at 8% 120px, rgba(69, 196, 176, 0.05), transparent 70%);
+  pointer-events: none;
+}
+
+.wrap {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 28px;
+  position: relative;
+}
+
+/* ---------- header ---------- */
+
+.site-header {
+  padding: 26px 0 0;
+}
+
+.site-header .wrap {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.wordmark {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 21px;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.wordmark .rail {
+  width: 30px;
+}
+
+.site-header nav {
+  margin-left: auto;
+  display: flex;
+  gap: 26px;
+}
+
+.site-header nav a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 14.5px;
+  transition: color 0.2s;
+}
+
+.site-header nav a:hover,
+.site-header nav a[aria-current] {
+  color: var(--ink);
+}
+
+/* ---------- the phase rail motif ---------- */
+
+.rail {
+  display: flex;
+  gap: 3px;
+  height: 5px;
+}
+
+.rail span {
+  flex: 1;
+  border-radius: 99px;
+  background: var(--hairline);
+}
+
+.rail span.done {
+  background: var(--amber);
+}
+
+.rail span.teal {
+  background: var(--teal);
+}
+
+/* ---------- hero ---------- */
+
+.hero {
+  padding: 84px 0 96px;
+}
+
+.hero .wrap {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.hero h1 {
+  font-family: var(--display);
+  font-size: clamp(42px, 6.5vw, 64px);
+  font-weight: 550;
+  line-height: 1.06;
+  letter-spacing: -0.025em;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--amber);
+}
+
+.hero .sub {
+  margin-top: 22px;
+  font-size: 18.5px;
+  color: var(--muted);
+  max-width: 46ch;
+}
+
+.hero .cta {
+  margin-top: 34px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.pill {
+  display: inline-block;
+  padding: 12px 22px;
+  border-radius: 99px;
+  border: 1px solid var(--hairline);
+  background: var(--card);
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.cta .fine {
+  color: var(--faint);
+  font-size: 13.5px;
+}
+
+/* staggered load */
+.hero h1,
+.hero .sub,
+.hero .cta,
+.hero .phone {
+  animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.hero .sub { animation-delay: 0.08s; }
+.hero .cta { animation-delay: 0.16s; }
+.hero .phone { animation-delay: 0.12s; }
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- the phone ---------- */
+
+.phone {
+  width: 302px;
+  justify-self: center;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 50px;
+  padding: 11px;
+  background: linear-gradient(180deg, #222e39, #101519);
+  box-shadow:
+    0 40px 80px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.phone img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 40px;
+}
+
+/* ---------- sections ---------- */
+
+.divider {
+  padding: 0 0 14px;
+}
+
+.divider .rail {
+  max-width: 120px;
+}
+
+.features {
+  padding: 10px 0 90px;
+}
+
+.features .grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.feature {
+  background: var(--panel);
+  border: 1px solid var(--hairline);
+  border-radius: 18px;
+  padding: 28px;
+}
+
+.feature .rail {
+  max-width: 64px;
+  margin-bottom: 18px;
+}
+
+.feature h2 {
+  font-family: var(--display);
+  font-size: 22px;
+  font-weight: 570;
+  letter-spacing: -0.015em;
+  margin-bottom: 8px;
+}
+
+.feature p {
+  color: var(--muted);
+  font-size: 15.5px;
+}
+
+/* ---------- article pages (privacy, support) ---------- */
+
+.article {
+  padding: 64px 0 90px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.article > .wrap {
+  max-width: 720px;
+}
+
+.article h1 {
+  font-family: var(--display);
+  font-size: clamp(36px, 5vw, 48px);
+  font-weight: 550;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.article .stamp {
+  margin-top: 10px;
+  color: var(--faint);
+  font-size: 14px;
+}
+
+.article .lede {
+  margin-top: 26px;
+  font-size: 19px;
+  line-height: 1.6;
+  color: var(--ink);
+  max-width: 56ch;
+}
+
+.article section {
+  margin-top: 46px;
+}
+
+.article h2 {
+  font-family: var(--display);
+  font-size: 24px;
+  font-weight: 570;
+  letter-spacing: -0.015em;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.article h2::before {
+  content: "";
+  width: 22px;
+  height: 5px;
+  border-radius: 99px;
+  background: var(--amber);
+  flex: none;
+}
+
+.article section:nth-of-type(even) h2::before {
+  background: var(--teal);
+}
+
+.article p {
+  color: var(--muted);
+  max-width: 62ch;
+}
+
+.article p + p {
+  margin-top: 12px;
+}
+
+.article ul {
+  list-style: none;
+  margin-top: 6px;
+}
+
+.article li {
+  color: var(--muted);
+  padding: 14px 0;
+  border-bottom: 1px solid var(--hairline);
+  max-width: 62ch;
+}
+
+.article li:last-child {
+  border-bottom: none;
+}
+
+.article li strong {
+  color: var(--ink);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 3px;
+}
+
+.article a {
+  color: var(--amber);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(240, 166, 58, 0.35);
+}
+
+.article a:hover {
+  border-bottom-color: var(--amber);
+}
+
+/* ---------- footer ---------- */
+
+.site-footer {
+  border-top: 1px solid var(--hairline);
+  padding: 30px 0 48px;
+}
+
+.site-footer .wrap {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  color: var(--faint);
+  font-size: 13.5px;
+}
+
+.site-footer nav {
+  margin-left: auto;
+  display: flex;
+  gap: 20px;
+}
+
+.site-footer a {
+  color: var(--faint);
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  color: var(--muted);
+}
+
+/* ---------- small screens ---------- */
+
+@media (max-width: 820px) {
+  .hero {
+    padding: 56px 0 70px;
+  }
+
+  .hero .wrap {
+    grid-template-columns: 1fr;
+    gap: 56px;
+  }
+
+  .features .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .phone {
+    width: 280px;
+  }
+}
